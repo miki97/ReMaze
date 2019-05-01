@@ -74,13 +74,16 @@ public class MazeSpawner : MonoBehaviour {
 					tmp = Instantiate(Wall,new Vector3(x,0,z-CellHeight/2)+Wall.transform.position,Quaternion.Euler(0,180,0)) as GameObject;// back
 					tmp.transform.parent = transform;
 				}
-				if(cell.IsGoal && GoalPrefab != null){
+                if (cell.IsGoal && GoalPrefab != null){
 					tmp = Instantiate(GoalPrefab,new Vector3(x,1,z), Quaternion.Euler(0,0,0)) as GameObject;
 					tmp.transform.parent = transform;
 				}
 			}
 		}
-		if(Pillar != null){
+        //static Random rnd = new Random();
+        //float x = rnd.NextDouble()(1, Columns * (CellWidth + (AddGaps ? .2f : 0)));  // creates a number
+        //float z = rnd.NextDouble()(1, row * (CellHeight + (AddGaps ? .2f : 0)));   // creates a number 
+        if (Pillar != null){
 			for (int row = 0; row < Rows+1; row++) {
 				for (int column = 0; column < Columns+1; column++) {
 					float x = column*(CellWidth+(AddGaps?.2f:0));

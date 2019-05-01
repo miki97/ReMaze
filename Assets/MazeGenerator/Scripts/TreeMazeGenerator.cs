@@ -38,7 +38,7 @@ public abstract class TreeMazeGenerator : BasicMazeGenerator {
 		Direction[] movesAvailable = new Direction[4];
 		int movesAvailableCount = 0;
 		mCellsToVisit.Add (new CellToVisit (Random.Range (0, RowCount), Random.Range (0, ColumnCount),Direction.Start));
-		
+        int goals = 0;
 		while (mCellsToVisit.Count > 0) {
 			movesAvailableCount = 0;
 			CellToVisit ctv = mCellsToVisit[GetCellInRange(mCellsToVisit.Count-1)];
@@ -84,7 +84,8 @@ public abstract class TreeMazeGenerator : BasicMazeGenerator {
 				}
 			}
 
-			if(!GetMazeCell(ctv.Row,ctv.Column).IsVisited && movesAvailableCount == 0){
+			if(!GetMazeCell(ctv.Row,ctv.Column).IsVisited && movesAvailableCount == 0 && goals == 0){
+                goals = 1;
 				GetMazeCell(ctv.Row,ctv.Column).IsGoal = true;
 			}
 
